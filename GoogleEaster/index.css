@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+}
+body {
+    padding-top: 70px;
+    padding-left: 50px;
+}
+h3 {
+    text-align: left;
+}
+.body {
+    margin: auto;
+}
+.searchBox {
+    background-color: rgb(204, 194, 194);
+    text-align: center;
+    border-radius: 12px;
+    max-width: 300px;
+    font-size: x-large;
+    margin: auto;
+}
+input {
+    border: none;
+    background-color: rgb(204, 194, 194);
+    color: rgb(0, 0, 0);
+}
+.searchIcon {
+    height: 12px;
+    width: 12px;
+    margin-right: 8px;
+    margin-left: o;
+}
+.micIcon {
+    height: 16px;
+    width: 18px;
+}
+.angelIcon {
+    height: 27px;
+    width: 28px;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+.angelImage {
+    align-self: center;
+}
+.anText {
+    margin: 0;
+}
+.angel {
+    display: flex;
+    justify-content: center;
+}
