@@ -123,6 +123,7 @@ start.addEventListener('click', (/* rest */) => {
 });
 
 reset.addEventListener('click', () => {
+  //reset should take timer back to begnning of date
   // Clear the interval
   clearInterval(intervalId);
 
@@ -133,3 +134,6 @@ reset.addEventListener('click', () => {
   });
   expired.innerHTML = '';
 });
+
+//if year is not input, timer should start from next first input
+//whether month, date or hour
