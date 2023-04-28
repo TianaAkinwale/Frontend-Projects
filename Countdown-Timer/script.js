@@ -35,7 +35,7 @@ const start = document.getElementById('start');
 const reset = document.getElementById('reset');
 
 let countDate;
-
+let intervalId;
 start.addEventListener('click', (/* rest */) => {
 /*   rest.preventDefault()
  */  let uYear = userYear.value
@@ -107,18 +107,29 @@ start.addEventListener('click', (/* rest */) => {
         time.textContent = `00`;
       });
     expired.textContent = `This timer has expired.`;
-  }; 
-}
+    }; 
+  }
 
  //countdown
- setInterval(getTimeLeft, 1000);
- getTimeLeft();
-})
+ /* setInterval(getTimeLeft, 1000);
+ getTimeLeft(); */
 
-/*reset.addEventListener('click', () => {
-  userDeadlineOutput.innerHTML = ''
+ // Clear the previous interval
+  clearInterval(intervalId);
+
+  // Start a new interval
+  intervalId = setInterval(getTimeLeft, 1000);
+  getTimeLeft();
+});
+
+reset.addEventListener('click', () => {
+  // Clear the interval
+  clearInterval(intervalId);
+
+  // Reset the timer output
+  userDeadlineOutput.innerHTML = '';
   timesOutput.forEach((time) => {
     time.innerHTML = '';
   });
   expired.innerHTML = '';
-})*/
+});
