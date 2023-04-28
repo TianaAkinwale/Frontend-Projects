@@ -36,9 +36,9 @@ const reset = document.getElementById('reset');
 
 let countDate;
 
-start.addEventListener('click', (rest) => {
-  rest.preventDefault()
-  let uYear = userYear.value
+start.addEventListener('click', (/* rest */) => {
+/*   rest.preventDefault()
+ */  let uYear = userYear.value
   let uDate = userDate.value;
   let uMon = userMonth.value;
   let uHour = userHour.value;
@@ -61,51 +61,51 @@ start.addEventListener('click', (rest) => {
   ${month} ${year} ${hour} : ${min}`;
 
 
-let futureTime = countDate.getTime();
-//function
+  let futureTime = countDate.getTime();
 
-function getTimeLeft() {
-  let today = new Date().getTime();
-  let t = futureTime - today;
-  // 1s = 1000ms
-  // 1m = 60s
-  // 1hr = 60m
-  // 1d = 24h
+  //function
+  function getTimeLeft() {
+    let today = new Date().getTime();
+    let t = futureTime - today;
+    // 1s = 1000ms
+    // 1m = 60s
+    // 1hr = 60m
+    // 1d = 24h
+    
+    // values in miliseconds
+    let oneDay = 24 * 60 * 60 * 1000;
+    let oneHour = 60 * 60 * 1000;
+    let oneMin = 60 * 1000;
+
+    //Calculate values
+    let days = Math.floor(t / oneDay);
+    let hours = Math.floor((t % oneDay) / oneHour)
+    let mins = Math.floor((t % oneHour) / oneMin);
+    let secs = Math.floor((t % oneMin) / 1000);
+
+    //store the time values in an array
+    const values = [days, hours, mins, secs];
   
-  // values in miliseconds
-  let oneDay = 24 * 60 * 60 * 1000;
-  let oneHour = 60 * 60 * 1000;
-  let oneMin = 60 * 1000;
+    //function to get the correct format
+    function format(time){
+      if (time < 10){
+        return (time = `0${time}`);
+      }
+      return time;
+    };
 
-  //Calculate values
-  let days = Math.floor(t / oneDay);
-  let hours = Math.floor((t % oneDay) / oneHour);
-  let mins = Math.floor((t % oneHour) / oneMin);
-  let secs = Math.floor((t % oneMin) / 1000);
+    //loop through the array
+    timesOutput.forEach((time, index) => {
+    time.innerHTML = format(values[index]);
+    });
 
-  //store the time values in an array
-  const values = [days, hours, mins, secs];
- 
-  //function to get the correct format
-  function format(time){
-    if (time < 10){
-      return (time = `0${time}`);
-    }
-    return time;
-  };
-
-  //loop through the array
-  timesOutput.forEach((time, index) => {
-   time.innerHTML = format(values[index]);
-  });
-
-  //when countdown ends
-  if (t < 0) {
-    //clearInterval(countdown);
-    userDeadlineOutput.textContent = 'REFRESH PAGE'
-    timesOutput.forEach((time) => {
-      time.textContent = `00`;
-     });
+    //when countdown ends
+    if (t < 0) {
+      //clearInterval(countdown);
+      userDeadlineOutput.textContent = 'REFRESH PAGE'
+      timesOutput.forEach((time) => {
+        time.textContent = `00`;
+      });
     expired.textContent = `This timer has expired.`;
   }; 
 }
@@ -113,7 +113,7 @@ function getTimeLeft() {
  //countdown
  setInterval(getTimeLeft, 1000);
  getTimeLeft();
-}).preventDefault();
+})
 
 /*reset.addEventListener('click', () => {
   userDeadlineOutput.innerHTML = ''
